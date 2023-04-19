@@ -1,5 +1,5 @@
 use rand::Rng;
-use std::{fmt, fs::File, process};
+use std::{fmt, fs::File};
 // use csv::WriterBuilder;
 
 // #[derive(Debug)]
@@ -123,24 +123,25 @@ impl Manager {
         let mut passed: u32 = 0;
         while completed < self.amount as u32 + 10{
             for (i, process) in self.processes.iter().enumerate() {
-                let length: usize = lines[i].len();
-                if (process.run_time - time_passed[i]) >= self.quant {
-                    lines[i] += &"-".repeat((passed as usize) - length);
-                    lines[i] += &"+".repeat(self.quant as usize);
+                let length: usize = lines[process.p_id].len();
+                if (process.run_time - time_passed[process.p_id]) >= self.quant {
+                    lines[process.p_id] += &"-".repeat((passed as usize) - length);
+                    lines[process.p_id] += &"+".repeat(self.quant as usize);
                     passed += self.quant;
-                    time_passed[i] += self.quant;
+                    time_passed[process.p_id] += self.quant;
                 } else {
-                    lines[i] += &"-".repeat((passed as usize) - length);
-                    lines[i] += &"+".repeat((process.run_time - time_passed[i]) as usize);
-                    passed += process.run_time - time_passed[i];
-                    time_passed[i] += process.run_time - time_passed[i];
-                    if time_passed[i] == process.run_time {
+                    lines[process.p_id] += &"-".repeat((passed as usize) - length);
+                    lines[process.p_id] += &"+".repeat((process.run_time - time_passed[process.p_id]) as usize);
+                    passed += process.run_time - time_passed[process.p_id];
+                    time_passed[process.p_id] += process.run_time - time_passed[process.p_id];
+                    if time_passed[process.p_id] == process.run_time {
                         completed += 1;
                         continue;
                     }
                 }
             }
         }
+        self.processes.sort_by_key(|s| s.p_id);
         for line in lines.iter() {
             println!("{}{}", line, "-".repeat(self.total as usize - line.len()));
         }
@@ -218,7 +219,7 @@ impl fmt::Display for Process {
 fn main() {
     let mut manager = Manager::_create(5);
     // println!("{}", manager);
-    manager.algorithm = Algorithm::FCFS;
+    manager.algorithm = Algorithm::SJF;
     manager._display(false);
     // manager.load_config(String::from("out.csv")).expect("Иди нахуй у тебя error");
     manager._display(true);
