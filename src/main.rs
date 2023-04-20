@@ -1,5 +1,5 @@
 use rand::Rng;
-use std::{fmt, fs::File};
+use std::{fmt, fs::File, io::{self, Write}};
 // use csv::WriterBuilder;
 
 // #[derive(Debug)]
@@ -11,6 +11,7 @@ struct Manager {
     quant: u32,
 }
 
+#[allow(dead_code)]
 enum Algorithm {
     FCFS,
     NONE,
@@ -19,7 +20,7 @@ enum Algorithm {
 }
 
 impl Manager {
-    fn _create(amount: usize) -> Manager {
+    fn _create(amount: usize, quant: u32) -> Manager {
         let mut processes: Vec<Process> = Vec::new();
         let mut total: u32 = 0;
         for _i in 0..amount {
@@ -32,7 +33,7 @@ impl Manager {
             amount,
             algorithm: Algorithm::FCFS,
             total,
-            quant: 4,
+            quant: quant,
         }
     }
 
@@ -48,7 +49,6 @@ impl Manager {
             for i in 0..=2 {
                 params[i] = String::from(record.get(i).unwrap()).parse()?;
             }
-            // println!("{:?}", record);
             let process: Process = Process {
                 run_time: params[1] as u32,
                 wait_time: 0,
@@ -63,7 +63,9 @@ impl Manager {
     }
 
     fn _fcfs_sjf(&mut self) {
+        let mut total_wait_time : f32 = 0.0;
         for process in self.processes.iter() {
+            total_wait_time += process.wait_time as f32;
             let mut line: String = String::from("");
             let before: usize = process.wait_time.try_into().unwrap();
             let after: usize = (self.total - process.wait_time - process.run_time)
@@ -72,12 +74,17 @@ impl Manager {
             line += &String::from("-").repeat(before);
             line += &String::from("+").repeat(process.run_time.try_into().unwrap());
             line += &String::from("-").repeat(after);
-            println!("{}", line);
+            println!("pId{} {} wait_time = {}", process.p_id, line, process.wait_time);
         }
+        println!(
+            "Average wait time: {}",
+            total_wait_time /self.amount as f32
+        );
         println!();
     }
     fn _display(&mut self, rr: bool) {
         self.calculate_wait_time();
+        self.processes.sort_by_key(|s| s.p_id);
         if rr {
             let _ = match self.algorithm {
                 Algorithm::FCFS => {
@@ -90,10 +97,11 @@ impl Manager {
                 }
                 Algorithm::NONE => {
                     for process in self.processes.iter() {
-                        println!("{}", process);
+                        println!("pId{} {}", process.p_id, process);
                     }
                 }
                 Algorithm::PRIORITY => {
+                    self.processes.sort_by_key(|s| s.priority);
                     self.rr();
                 }
             };
@@ -107,7 +115,7 @@ impl Manager {
                 }
                 Algorithm::NONE => {
                     for process in self.processes.iter() {
-                        println!("{}", process);
+                        println!("pId{} {}", process.p_id, process);
                     }
                 }
                 Algorithm::PRIORITY => {
@@ -116,13 +124,24 @@ impl Manager {
             };
         }
     }
+
+    fn calculate_average_wait_time(&self, lines: &Vec<String>) -> f32 {
+        let mut total_wait_time: u32 = 0;
+        for (_i, line) in lines.iter().enumerate() {
+            let pos: u32 = line.rfind("+").unwrap_or(0) as u32 + 1;
+            total_wait_time += (pos) - self.processes[_i].run_time;
+            // println!("pId{} pos={} wait={}", _i, pos, (pos) - self.processes[_i].run_time);
+        }
+        total_wait_time as f32 / self.amount as f32
+    }
+
     fn rr(&mut self) -> () {
         let mut time_passed = vec![0; self.amount];
         let mut lines = vec![String::new(); self.amount];
         let mut completed: u32 = 0;
         let mut passed: u32 = 0;
-        while completed < self.amount as u32 + 10{
-            for (i, process) in self.processes.iter().enumerate() {
+        while completed < self.amount as u32 + 10 {
+            for (_, process) in self.processes.iter().enumerate() {
                 let length: usize = lines[process.p_id].len();
                 if (process.run_time - time_passed[process.p_id]) >= self.quant {
                     lines[process.p_id] += &"-".repeat((passed as usize) - length);
@@ -131,7 +150,8 @@ impl Manager {
                     time_passed[process.p_id] += self.quant;
                 } else {
                     lines[process.p_id] += &"-".repeat((passed as usize) - length);
-                    lines[process.p_id] += &"+".repeat((process.run_time - time_passed[process.p_id]) as usize);
+                    lines[process.p_id] +=
+                        &"+".repeat((process.run_time - time_passed[process.p_id]) as usize);
                     passed += process.run_time - time_passed[process.p_id];
                     time_passed[process.p_id] += process.run_time - time_passed[process.p_id];
                     if time_passed[process.p_id] == process.run_time {
@@ -142,9 +162,18 @@ impl Manager {
             }
         }
         self.processes.sort_by_key(|s| s.p_id);
-        for line in lines.iter() {
-            println!("{}{}", line, "-".repeat(self.total as usize - line.len()));
+        for (i, line) in lines.iter().enumerate() {
+            println!(
+                "pId{} {}{}",
+                i,
+                line,
+                "-".repeat(self.total as usize - line.len())
+            );
         }
+        println!(
+            "Average wait time: {}",
+            self.calculate_average_wait_time(&lines)
+        );
     }
 
     fn calculate_wait_time(&mut self) {
@@ -210,17 +239,31 @@ impl fmt::Display for Process {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         write!(
             f,
-            "{}, {}, {}",
-            self.run_time, self.wait_time, self.priority
+            "pId{} {}, {}, {}",
+            self.p_id, self.run_time, self.wait_time, self.priority
         )
     }
 }
 
+fn get_input(message: &str) -> u32 {
+    print!("{}: ", message);
+    io::stdout().flush().unwrap();
+    let mut result: String = String::new();
+    io::stdin()
+        .read_line(&mut result)
+        .expect("Failed to read input");
+
+    result.trim().parse().expect("Input not an integer")
+}
+
 fn main() {
-    let mut manager = Manager::_create(5);
-    // println!("{}", manager);
+    let amount: usize = get_input("Input the amount of processes") as usize;
+    let quant: u32 = get_input("Input the value for quant");
+    let mut manager = Manager::_create(amount, quant);
+    manager
+        ._load_config(String::from("out.csv"))
+        .expect("Error loading file");
     manager.algorithm = Algorithm::SJF;
     manager._display(false);
-    // manager.load_config(String::from("out.csv")).expect("Иди нахуй у тебя error");
     manager._display(true);
 }
