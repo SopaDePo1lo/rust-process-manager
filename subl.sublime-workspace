@@ -1,0 +1,411 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"Prin",
+				"print!(…)"
+			],
+			[
+				"as",
+				"as_bytes()"
+			],
+			[
+				"Ve",
+				"vec![…]"
+			],
+			[
+				"en",
+				"encode_utf8(…)"
+			],
+			[
+				"by",
+				"Bytes (use std::str::Bytes)"
+			],
+			[
+				"tr",
+				"trim()"
+			],
+			[
+				"in",
+				"input_string(…)"
+			],
+			[
+				"i",
+				"i8"
+			],
+			[
+				"ma",
+				"ifmain\tif __name__ == '__main__'"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "src/main.rs",
+			"settings":
+			{
+				"buffer_size": 3085,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/processes.rs",
+			"settings":
+			{
+				"buffer_size": 9731,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"run",
+				"Build With: Cargo - Run"
+			],
+			[
+				"proje",
+				"Terminal: Open in project folder"
+			],
+			[
+				"theme",
+				"UI: Select Theme"
+			],
+			[
+				"ter",
+				"Terminal: Open"
+			],
+			[
+				"them",
+				"gruvbox: Select Theme"
+			],
+			[
+				"the",
+				"gruvbox: Select Theme"
+			],
+			[
+				"cargo",
+				"Build With: Cargo"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"packa",
+				"Install Package Control"
+			],
+			[
+				"package c",
+				"Preferences: Browse Packages"
+			],
+			[
+				"",
+				"Build With: Cargo - Bench"
+			]
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 130.0,
+		"history":
+		[
+			"view.settings().get('font_face')"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/C/Users/Sopa/Documents/Dev/rust-process-manager",
+		"/C/Users/Sopa/Documents/Dev/rust-process-manager/src"
+	],
+	"file_history":
+	[
+		"/C/Users/Sopa/Documents/Dev/rust-process-manager/subl.sublime-project",
+		"/C/Users/Sopa/Documents/Dev/rsa/src/main.rs",
+		"/C/Users/Sopa/Downloads/wddm_timeout_patch.reg",
+		"/C/Users/Sopa/Downloads/test.go",
+		"/C/Users/Sopa/Documents/Dev/rsa/.gitignore",
+		"/C/Users/Sopa/Documents/Dev/pygost_0_15/pygost/test_gost3411_94.py",
+		"/C/Users/Sopa/Documents/Dev/pygost_0_15/pygost/gost28147.py",
+		"/C/Users/Sopa/Documents/Dev/pygost_0_15/pygost/main.py",
+		"/C/Users/Sopa/Documents/Dev/pygost_0_15/pygost/gost3411_94.py",
+		"/C/Users/Sopa/AppData/Local/fanal/fanal.db",
+		"/C/Users/Sopa/Documents/Dev/pygost_0_15/pygost/test_gost28147.py",
+		"/C/Users/Sopa/Documents/Dev/UI_testing/main.py",
+		"/C/Users/Sopa/Documents/Dev/rust-process-manager/src/processes.rs",
+		"/C/Users/Sopa/Documents/Dev/rust-process-manager/src/plot.rs",
+		"/C/Users/Sopa/Documents/Dev/rust-process-manager/src/main.rs",
+		"/C/Users/Sopa/Downloads/main.py",
+		"/C/Users/Sopa/Documents/Dev/Phys/main.py",
+		"/C/Users/Sopa/AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/settings.json"
+	],
+	"find":
+	{
+		"height": 23.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"scrollbar_highlights": true,
+		"show_context": true,
+		"use_buffer2": true,
+		"use_gitignore": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "src/main.rs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3085,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								626,
+								626
+							]
+						],
+						"settings":
+						{
+							"auto_complete_triggers":
+							[
+								{
+									"characters": "<",
+									"selector": "text.html, text.xml"
+								},
+								{
+									"rhs_empty": true,
+									"selector": "punctuation.accessor"
+								},
+								{
+									"characters": ":.'(",
+									"selector": "meta.tag, source - comment - string.quoted.double.block - string.quoted.single.block - string.unquoted.heredoc",
+									"server": "rust-analyzer"
+								}
+							],
+							"lsp_active": true,
+							"lsp_uri": "file:///C:/Users/Sopa/Documents/Dev/rust-process-manager/src/main.rs",
+							"show_definitions": false,
+							"syntax": "Packages/Rust/Rust.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"stack_multiselect": false,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "src/processes.rs",
+					"selected": true,
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 9731,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4411,
+								4411
+							]
+						],
+						"settings":
+						{
+							"auto_complete_triggers":
+							[
+								{
+									"characters": "<",
+									"selector": "text.html, text.xml"
+								},
+								{
+									"rhs_empty": true,
+									"selector": "punctuation.accessor"
+								},
+								{
+									"characters": ":.'(",
+									"selector": "meta.tag, source - comment - string.quoted.double.block - string.quoted.single.block - string.unquoted.heredoc",
+									"server": "rust-analyzer"
+								}
+							],
+							"lsp_active": true,
+							"lsp_uri": "file:///C:/Users/Sopa/Documents/Dev/rust-process-manager/src/processes.rs",
+							"show_definitions": false,
+							"syntax": "Packages/Rust/Rust.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 3192.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"stack_multiselect": false,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.LSP Log Panel":
+	{
+		"height": 0.0
+	},
+	"output.diagnostics":
+	{
+		"height": 0.0
+	},
+	"output.exec":
+	{
+		"height": 81.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.mdpopups":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "subl.sublime-project",
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				".gitignore"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 499.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"C:\\Users\\Sopa\\Documents\\Dev\\rsa\\rsa.sublime-project"
+			]
+		],
+		"width": 378.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 198.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
